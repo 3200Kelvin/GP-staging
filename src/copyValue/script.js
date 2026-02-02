@@ -1,4 +1,4 @@
-export const useVopyValue = () => {
+export const useCopyValue = () => {
     const buttons = document.querySelectorAll('.copy-button');
 
     buttons.forEach(init);

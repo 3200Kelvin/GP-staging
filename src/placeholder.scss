@@ -1,0 +1,9 @@
+.burger-btn {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.dotted-line {
+	background-color: transparent;
+	background: repeating-linear-gradient(to right, white 0px, white 1px, transparent 1px, transparent 7px);
+}

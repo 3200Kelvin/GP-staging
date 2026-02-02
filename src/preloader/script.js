@@ -9,51 +9,41 @@ export const PRELOADER_PROGRESS_AMOUNT = {
 };
 
 export const usePreloader = (skipAll = false) => {
+    let loaded = 0;
     const isPreloaded = getIsPreloaded();
     const preloader = document.querySelector('.preloader');
+
+    if (!preloader) {
+        return unblockScroll();
+    }
+
     const line = preloader.querySelector('.preloader__line');
     const runner = line.querySelector('.preloader__line__runner');
     const button = preloader.querySelector('.preloader__button');
-    const hero = document.querySelector('.hero');
+    const hero = document.querySelector('.hero, [data-role="hero"]');
+
+    if (skipAll || !hero) {
+        onPartLoaded(PRELOADER_PROGRESS_AMOUNT.SKIP)
+            .add(() => {
+                removePreloader();
+                unblockScroll();
+            });
+        return;
+    }
 
     const menu = document.querySelector('.menu__content');
     const cursor = document.querySelector('.cursor');
-    const heroTitle = hero.querySelector('.heading');
-    const heroCaption = hero.querySelector('.hero__caption > *');
-    const heroWeights = hero.querySelectorAll('.weights > *');
-
-    let loaded = 0;
+    const heroTitle = hero.querySelector('.heading, [data-role="hero-title"]');
+    const heroCaption = hero.querySelector('.hero__caption > *, [data-role="hero-caption"]');
+    const heroLast = hero.querySelectorAll('.weights > *, [data-role="hero-last"]');
 
     window.setPreloaderState = onPartLoaded;
-
-    // const videoContainers = [
-    //     hero.querySelector('.hero__video[data-order="1"]'),
-    //     hero.querySelector('.hero__video[data-order="2"]'),
-    // ];
-
-    // const [video1, video2] = [...videoContainers].map((container) => {
-    //     const video = container.querySelector('video');
-    //     // const source = video.querySelector('source');
-    //     // const src = container.dataset.src;
-    //     // source.src = src;
-    //     return video;
-    // });
 
     const video1 = hero.querySelector('.hero__video--first video');
     const video2 = hero.querySelector('.hero__video--second video');
 
     if (!video1 || !video2) {
         return removePreloader();
-    }
-
-    if (skipAll) {
-        onPartLoaded(PRELOADER_PROGRESS_AMOUNT.SKIP)
-            .add(() => {
-                removePreloader();
-                showHeroElements();
-                unblockScroll();
-            });
-        return;
     }
 
     if (!video1 || !video2) {
@@ -178,15 +168,15 @@ export const usePreloader = (skipAll = false) => {
         gsap.to(cursor, { display: 'none' });
         gsap.to(menu, { transform: 'translateY(-150%)' });
         gsap.to(heroCaption, { opacity: 0 });
-        gsap.to(heroWeights, { opacity: 0 });
+        gsap.to(heroLast, { opacity: 0 });
     }
 
     function showHeroElements() {
-        heroTitle.appear();
+        heroTitle.appear?.();
         gsap.to(cursor, { display: 'block' });
         gsap.to(menu, { transform: 'translateY(0%)', duration: 0.7 });
         gsap.to(heroCaption, { opacity: 1, duration: 0.7 });
-        gsap.to(heroWeights, { opacity: 1, duration: 0.7 });
+        gsap.to(heroLast, { opacity: 1, duration: 0.7 });
     }
 
     async function waitForVideos() {

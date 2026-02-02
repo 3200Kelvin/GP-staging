@@ -7,6 +7,7 @@ module.exports = (env) => ({
     initial: './initial.js',
     preloader: './preloader.js',
     placeholder: './placeholder.js',
+    career: './career.js',
   },
   mode: env.mode || 'development',
   watch: env.watch || false,

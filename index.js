@@ -6,21 +6,24 @@ import { useUnblur } from "./src/unblur/script";
 import { useExpandables } from "./src/expandables/script";
 import { useSolutions } from "./src/solutions/script";
 import { useAccordeon } from "./src/accordeon/script";
-import { useVopyValue } from "./src/copyValue/script";
+import { useCopyValue } from "./src/copyValue/script";
 import { useForm } from "./src/form/script";
 import { useAutoplayVideos } from "./src/videos/script";
 
 import './src/style.scss';
 
-useMenu();
-useHeroCursor();
-useUnblur();
-useSmoke();
-useExpandables();
-useSolutions();
-useAccordeon();
-useForm();
-useVopyValue();
-useAutoplayVideos();
+document.addEventListener('DOMContentLoaded', () => {
+    useMenu();
+    useHeroCursor();
+    useUnblur();
+    useSmoke();
+    useExpandables();
+    useSolutions();
+    useAccordeon();
+    useForm();
+    useCopyValue();
+    useAutoplayVideos();
 
-window.setPreloaderState(PRELOADER_PROGRESS_AMOUNT.SCRIPTS);
+    window.setPreloaderState(PRELOADER_PROGRESS_AMOUNT.SCRIPTS);
+});
+

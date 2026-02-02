@@ -1,24 +1,15 @@
 import { useMenu } from "./src/menu/script";
-// import { useHeroCursor } from "./src/cursor/script";
 import { useSmoke } from "./src/smoke/script";
 import { useUnblur } from "./src/unblur/script";
 import { useCopyValue } from "./src/copyValue/script";
-import { useForm } from "./src/form/script";
-import { usePopupForm } from "./src/form/popupForm";
-import { usePreloader } from "./src/preloader/script";
-import { usePopups } from "./src/popup/script";
 
 import './src/style.scss';
-import './src/placeholder.scss';
+import './src/career.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
     useMenu();
-    // useHeroCursor();
     useUnblur();
     useSmoke({ trigger: window, xProperty: 'clientX', yProperty: 'clientY' });
-    useForm();
-    usePopupForm();
     useCopyValue();
-    usePreloader(true);
-    usePopups();
 });
+

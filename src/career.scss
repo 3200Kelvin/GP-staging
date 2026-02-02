@@ -1,0 +1,7 @@
+.why__entry {
+    @media screen and (max-width: 479px) {
+        &:nth-child(2n) {
+            transform: translateX(25%);
+        }
+    }
+}
