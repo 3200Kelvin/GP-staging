@@ -28,3 +28,11 @@ The compiled files are emitted to the `dist/` folder.
 There is a convenience script that builds and pushes the repo, so that it would update Github pages for the staging env
 
 - `npm run deploy`
+
+## Placing of dist files into Webflow
+
+Webflow website uses plain css and js code for production. In order to properly use it, contents of the files should be placed in the 
+folowwing places:
+- initial.css and initial.js: site settings -> custom code -> head code
+- common.css and common.js: site settings -> custom code -> footer code
+- page-specific .css and .js files: page editing -> script prod HTML element at the bottom of the page
