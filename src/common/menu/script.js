@@ -1,0 +1,59 @@
+import { COLORS, BORDER_RADIUS } from "../../common/constants";
+
+export const useMenu = () => {
+    const menu = document.querySelector('.menu');
+
+    useMobileMenu(menu);
+};
+
+function useMobileMenu(menuBlock) {
+    const menu = menuBlock.querySelector('.menu__mobile');
+    const button = menu.querySelector('.burger-btn');
+    const contactButton = menu.querySelector('.button');
+    const dropdown = menu.querySelector('.menu__mobile__dropdown');
+    const container = dropdown.querySelector('.menu__mobile__container');
+    const content = dropdown.querySelector('.menu__mobile__content');
+    const corner = dropdown.querySelector('.menu__mobile__corner');
+
+    let isOpened = false;
+
+    button.addEventListener('click', openMenu);
+    document.documentElement.addEventListener('click', closeMenu);
+
+    function openMenu(event) {
+        if (isOpened) {
+            return;
+        }
+        event.stopPropagation();
+        isOpened = true;
+
+        gsap.timeline()
+            .add(() => {
+                gsap.to(button, { transform: 'rotateZ(-45deg)', duration: 0.4 });
+                gsap.to(menu, { backgroundColor: COLORS.ORANGE, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 });
+                gsap.to(content, { backgroundColor: COLORS.ORANGE });
+                gsap.to(corner, { color: COLORS.ORANGE });
+                gsap.to(contactButton, { backgroundColor: COLORS.WHITE, color: COLORS.ORANGE });
+            })
+            .to(container, { transform: 'translateY(-100%)' })
+            .to(dropdown, { display: 'block' })
+            .to(container, { transform: 'translateY(0%)', duration: 0.4 })
+            .to(dropdown, { transform: 'translateY(-1px)' });
+    }
+
+    function closeMenu() {
+        isOpened = false;
+
+        gsap.timeline()
+            .add(() => {
+                gsap.to(button, { transform: 'rotateZ(0deg)', duration: 0.4 });
+                gsap.to(menu, { backgroundColor: COLORS.WHITE_15, borderBottomLeftRadius: BORDER_RADIUS, borderBottomRightRadius: BORDER_RADIUS });
+                gsap.to(content, { backgroundColor: COLORS.WHITE_15 });
+                gsap.to(corner, { color: COLORS.WHITE_15 });
+                gsap.to(contactButton, { backgroundColor: COLORS.TRANSPARENT, color: COLORS.WHITE });
+            })
+            .to(dropdown, { transform: 'translateY(0px)' })
+            .to(container, { transform: 'translateY(-100%)', duration: 0.4 })
+            .to(dropdown, { display: 'none' });
+    }
+}

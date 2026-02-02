@@ -1,0 +1,10 @@
+.accordeon__entry {
+    &__header {
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--orange) !important;
+            opacity: 1 !important;
+        }
+    }
+}
