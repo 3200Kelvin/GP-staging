@@ -1,3 +1,3 @@
-import { usePreloaderInit } from "./src/preloader/initial";
+import { usePreloaderInit } from "./src/common/preloader/initial";
 
 usePreloaderInit();

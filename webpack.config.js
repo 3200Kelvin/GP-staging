@@ -3,9 +3,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => ({
   entry: {
-    index: './index.js',
     initial: './initial.js',
-    preloader: './preloader.js',
+    common: './common.js',
+    main: './main.js',
     placeholder: './placeholder.js',
     career: './career.js',
   },
