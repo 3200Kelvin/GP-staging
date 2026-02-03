@@ -5,6 +5,7 @@ import { useMenu } from "./src/common/menu/script";
 import { usePopups } from "./src/common/popup/script";
 import { useUnblur } from "./src/common/unblur/script";
 import { useAutoplayVideos } from "./src/common/videos/script";
+import { useRunners } from "./src/common/runner/initAll";
 
 import './src/common/common.scss';
 
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
     usePopups();
     useUnblur();
     useAutoplayVideos();
+    useRunners();
 });
