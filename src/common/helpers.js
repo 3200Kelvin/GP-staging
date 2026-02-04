@@ -25,3 +25,15 @@ export const getOnEnterPress = (callback) => {
         }
     }
 }
+
+export const scrollToHash = () => {
+    const { hash } = window.location;
+    if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    }
+}

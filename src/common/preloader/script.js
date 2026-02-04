@@ -1,4 +1,5 @@
 import { unblockScroll } from "../../common/scroll";
+import { scrollToHash } from "../helpers";
 import { getIsPreloaded, setIsPreloaded } from "./initial";
 
 export const PRELOADER_PROGRESS_AMOUNT = {
@@ -12,6 +13,7 @@ export const usePreloader = (skipAll = false) => {
 
     if (!preloader) {
         unblockScroll();
+        scrollToHash();
         return null;
     }
 
@@ -42,6 +44,7 @@ export const usePreloader = (skipAll = false) => {
             .add(() => {
                 removePreloader();
                 unblockScroll();
+                scrollToHash();
             });
     }
 
