@@ -3,6 +3,10 @@ import { COLORS, BORDER_RADIUS } from "../../common/constants";
 export const useMenu = () => {
     const menu = document.querySelector('.menu');
 
+    if (!menu) {
+        return;
+    }
+
     useMobileMenu(menu);
 };
 

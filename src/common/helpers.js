@@ -37,3 +37,11 @@ export const scrollToHash = () => {
         }
     }
 }
+
+export const tryScript = (callback, message) => {
+    try {
+        callback();
+    } catch (error) {
+        console.error(message, error);
+    }
+}

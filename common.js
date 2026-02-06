@@ -6,6 +6,8 @@ import { usePopups } from "./src/common/popup/script";
 import { useUnblur } from "./src/common/unblur/script";
 import { useAutoplayVideos } from "./src/common/videos/script";
 import { useRunners } from "./src/common/runner/initAll";
+import { usePreloaderFallback } from "./src/common/preloader/fallback";
+import { tryScript } from "./src/common/helpers";
 
 import './src/common/common.scss';
 
@@ -17,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    useCopyValue();
-    useExpandables();
-    useForm();
-    useMenu();
-    usePopups();
-    useUnblur();
-    useAutoplayVideos();
-    useRunners();
+    tryScript(useCopyValue, 'Error initializing copy value functionality');
+    tryScript(useExpandables, 'Error initializing expandables functionality');
+    tryScript(useForm, 'Error initializing form functionality');
+    tryScript(useMenu, 'Error initializing menu functionality');
+    tryScript(usePopups, 'Error initializing popups functionality');
+    tryScript(useUnblur, 'Error initializing unblur functionality');
+    tryScript(useAutoplayVideos, 'Error initializing autoplay videos functionality');
+    tryScript(useRunners, 'Error initializing runners functionality');
+    tryScript(usePreloaderFallback, 'Error initializing preloader fallback functionality');
 });
